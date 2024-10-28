@@ -1,10 +1,12 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import ImageElement from "./ImageElement";
+import { useUser } from "@clerk/nextjs";
 
 const ThemeStories = ({ theme }) => {
   const [themeStoriesAvailable, setThemeStoriesAvailable] = useState(false);
   const [themeStories, setThemeStories] = useState([]);
+  const { user } = useUser();
 
   useEffect(() => {
     const fetchThemeStories = async () => {
@@ -35,6 +37,9 @@ const ThemeStories = ({ theme }) => {
               <ImageElement data={post} />
             </div>
           ))}
+      </div>
+      <div>
+        {!user && <p>Sign In to leave a comment</p>}
       </div>
     </div>
   );

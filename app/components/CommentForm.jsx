@@ -2,11 +2,10 @@
 import React, { useState } from "react";
 import { useUser } from "@clerk/nextjs";
 
-
-const CommentForm = ({data}) => {
+const CommentForm = ({ data }) => {
   const { user } = useUser();
 
-  const [commentText, setCommentText] = useState('')
+  const [commentText, setCommentText] = useState("");
   const handleSubmit = async (e) => {
     e.preventDefault();
     const res = await fetch("/api/comments", {
@@ -15,12 +14,12 @@ const CommentForm = ({data}) => {
         userId: user?.id,
         imageId: data._id,
         userName: user?.fullName,
-        commentText 
+        commentText,
       }),
     });
 
-    if ((res.status == 200)) {
-      setCommentText('')
+    if (res.status == 200) {
+      setCommentText("");
       // setName("");
       // setRole("");
       // setDob("");
@@ -31,13 +30,21 @@ const CommentForm = ({data}) => {
   };
   return (
     <div>
-      <form action="" onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="">Comment: </label>
-          <input value={commentText} onChange={e => setCommentText(e.target.value)} type="text" name="" id="comment" />
-        </div>
-        <button type="submit">Send</button>
-      </form>
+      {user && (
+        <form action="" onSubmit={handleSubmit}>
+          <div>
+            <label htmlFor="">Comment: </label>
+            <input
+              value={commentText}
+              onChange={(e) => setCommentText(e.target.value)}
+              type="text"
+              name=""
+              id="comment"
+            />
+          </div>
+          <button type="submit">Send</button>
+        </form>
+      )}
     </div>
   );
 };
