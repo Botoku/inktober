@@ -35,16 +35,23 @@ const themes = [
   "halloween",
 ];
 const HomeList = () => {
-  return <div>HomeList
-
+  return (
     <div>
+      <div className="grid grid-cols-3 gap-4">
         {themes.map((theme, i) => {
-            return <div key={i}>
-            <Link href={`/imgPost/${theme}`}>{theme}</Link>
-            </div>
+          return (
+            <Link
+              key={i}
+              href={`/imgPost/${theme}`}
+              className="w-24 h-24 flex items-center justify-center text-black bg-[#D9D9D9]"
+            >
+              {theme}
+            </Link>
+          );
         })}
+      </div>
     </div>
-  </div>;
+  );
 };
 
 export default HomeList;

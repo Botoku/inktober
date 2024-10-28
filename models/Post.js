@@ -5,6 +5,7 @@ const PostSchema = new mongoose.Schema({
   artistClerkID: { type: String, required: true },
   imgUrl: { type: String, required: true },
   theme: { type: String, required: true },
+
 });
 
 const Post = mongoose.models.IMGPost || mongoose.model("IMGPost", PostSchema);

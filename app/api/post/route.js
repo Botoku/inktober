@@ -14,15 +14,22 @@ export async function POST(request) {
     });
     return NextResponse.json({ newPost, status: 201, user, userId });
   } catch (error) {
+    console.log(error)
     return NextResponse.json(error);
   }
 }
 
 
 export async function GET(request){
+  await connectionToDB();
+  try {
     const theme = request.nextUrl.searchParams.get('theme')
-    console.log("theme", theme)
     const posts = await Post.find({theme})
-    // console.log(posts)
+    console.log(posts)
     return NextResponse.json(posts)
+  } catch (error) {
+    return NextResponse.json(error);
+    
+  }
+   
 }

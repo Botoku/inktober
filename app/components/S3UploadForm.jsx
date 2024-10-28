@@ -47,11 +47,9 @@ const S3UploadForm = ({ theme }) => {
         method: "POST",
         body: formData,
       });
-      console.log(res);
+     
        data = await res.json();
-      console.log("data");
-      console.log("data", data.fileName.file);
-      console.log(data.status);
+    
 
       sendDataToMongo()
       setUploading(false);
@@ -64,8 +62,8 @@ const S3UploadForm = ({ theme }) => {
     setFile(e.target.files[0]);
   };
   return (
-    <div>
-      <h1>Upload files to s3 Bucket</h1>
+    <div className="mt-10">
+      <h1>Upload your Image</h1>
       {}
       <form onSubmit={handleFormSubmit}>
         <input type="file" accept="image/*" onChange={handleFileChange} />
