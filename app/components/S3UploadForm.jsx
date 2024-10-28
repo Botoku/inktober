@@ -3,11 +3,13 @@ import React, { useState } from "react";
 import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 const S3UploadForm = ({ theme }) => {
-  const router = useRouter()
+  const router = useRouter();
   let data;
   const [file, setFile] = useState(null);
   const [uploading, setUploading] = useState(false);
   const { user } = useUser();
+  const [error, setError] = useState("");
+  const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB in bytes
 
   const handleFormSubmit = async (e) => {
     const sendDataToMongo = () => {
@@ -55,15 +57,23 @@ const S3UploadForm = ({ theme }) => {
 
       sendDataToMongo();
       setUploading(false);
-      window.location.reload()
-
+      window.location.reload();
     } catch (error) {
       console.log(error);
       setUploading(false);
     }
   };
   const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
+    const selectedFile = e.target.files[0];
+
+    // Validate file size
+    if (selectedFile && selectedFile.size > MAX_FILE_SIZE) {
+      setError("File size exceeds the 5MB limit.");
+      setFile(null);
+    } else {
+      setError("");
+      setFile(selectedFile);
+    }
   };
   return (
     <div className="mt-10">
@@ -74,6 +84,7 @@ const S3UploadForm = ({ theme }) => {
           <button type="submit" disabled={!file || uploading}>
             {uploading ? "Uploading.." : "Upload"}
           </button>
+          {error && <>{error}</>}
         </form>
       )}
     </div>
