@@ -1,8 +1,9 @@
 "use client";
 import React, { useState } from "react";
 import { useUser } from "@clerk/nextjs";
-
+import { useRouter } from "next/navigation";
 const S3UploadForm = ({ theme }) => {
+  const router = useRouter()
   let data;
   const [file, setFile] = useState(null);
   const [uploading, setUploading] = useState(false);
@@ -54,6 +55,8 @@ const S3UploadForm = ({ theme }) => {
 
       sendDataToMongo();
       setUploading(false);
+      router.refresh()
+
     } catch (error) {
       console.log(error);
       setUploading(false);
