@@ -55,7 +55,7 @@ const S3UploadForm = ({ theme }) => {
 
       sendDataToMongo();
       setUploading(false);
-      router.refresh()
+      window.location.reload()
 
     } catch (error) {
       console.log(error);
