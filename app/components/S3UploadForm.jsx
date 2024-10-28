@@ -81,9 +81,10 @@ const S3UploadForm = ({ theme }) => {
       {user && (
         <form onSubmit={handleFormSubmit}>
           <input type="file" accept="image/*" onChange={handleFileChange} />
-          <button type="submit" disabled={!file || uploading}>
+          <button className="disabled:cursor-not-allowed" type="submit" disabled={!file || uploading || error}>
             {uploading ? "Uploading.." : "Upload"}
           </button>
+          <p>Max 5MB</p>
           {error && <>{error}</>}
         </form>
       )}
