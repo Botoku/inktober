@@ -37,6 +37,7 @@ const themes = [
 const HomeList = () => {
   return (
     <div>
+      <p className="text-center mb-8 pt-8 text-2xl text-mint">Inktober Christmas 2024 COMING SOON</p>
       <div className="grid grid-cols-3 gap-4">
         {themes.map((theme, i) => {
           return (
