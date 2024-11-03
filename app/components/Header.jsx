@@ -6,10 +6,10 @@ import Link from "next/link";
 const Header = async () => {
   const user = await currentUser();
   return (
-    <div className="flex w-full justify-between items-center bg-[#2E7C17] py-3 px-2">
+    <div className="flex w-full justify-between items-center bg-navy border-b-mint border-b-4 text-mint py-3 px-2">
       {" "}
       <div>
-        <Link className="font-bold text-black" href={"/"}>
+        <Link className="font-bold" href={"/"}>
           INKTOBER
         </Link>
       </div>

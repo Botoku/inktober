@@ -43,7 +43,7 @@ const HomeList = () => {
             <Link
               key={i}
               href={`/imgPost/${theme}`}
-              className="w-24 h-24 flex items-center justify-center text-black bg-[#D9D9D9]"
+              className="px-5 pb-3 w-60 h-60 flex items-end justify-left text-navy font-bold capitalize bg-yellow"
             >
               {theme}
             </Link>
